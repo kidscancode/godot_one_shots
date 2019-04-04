@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Soldier.gd" type="Script" id=1]
+[ext_resource path="res://assets/spritesheet_characters.png" type="Texture" id=2]
+[ext_resource path="res://beam_pulse1.shader" type="Shader" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.3386, 26.1331 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+
+[node name="Soldier" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 113, 0, 51, 43 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 25, 9 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource( 2 )
+points = PoolVector2Array( 25, 9, 231.473, 9.27283 )
+default_color = Color( 2, 0.17, 0, 1 )
+texture_mode = 101
+end_cap_mode = 2
