@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Soldier.gd" type="Script" id=1]
 [ext_resource path="res://assets/spritesheet_characters.png" type="Texture" id=2]
 [ext_resource path="res://beam_pulse1.shader" type="Shader" id=3]
+[ext_resource path="res://beam_hit_particles.tres" type="Material" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 17.3386, 26.1331 )
@@ -34,3 +35,11 @@ points = PoolVector2Array( 25, 9, 231.473, 9.27283 )
 default_color = Color( 2, 0.17, 0, 1 )
 texture_mode = 101
 end_cap_mode = 2
+
+[node name="Particles2D" type="Particles2D" parent="Line2D"]
+position = Vector2( 250, 0 )
+rotation = 3.14159
+amount = 12
+speed_scale = 2.0
+explosiveness = 0.5
+process_material = ExtResource( 4 )

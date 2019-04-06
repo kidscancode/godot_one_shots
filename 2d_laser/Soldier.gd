@@ -9,6 +9,7 @@ var hit = null
 	
 func _ready():
 	$Line2D.remove_point(1)
+	$Line2D/Particles2D.emitting = false
 	
 func get_input():
 	velocity = Vector2()
@@ -28,6 +29,7 @@ func shoot():
 	hit = cast_beam()
 	yield(get_tree().create_timer(beam_duration), "timeout")
 	$Line2D.remove_point(1)
+	$Line2D/Particles2D.emitting = false
 	hit = null
 	yield(get_tree().create_timer(cooldown), "timeout")
 	can_shoot = true
@@ -40,6 +42,8 @@ func cast_beam():
 			$Line2D.add_point(transform.xform_inv(result.position))
 		else:
 			$Line2D.set_point_position(1, transform.xform_inv(result.position))
+		$Line2D/Particles2D.position = $Line2D.get_point_position(1)
+		$Line2D/Particles2D.emitting = true
 	return result
 		
 func _physics_process(delta):
